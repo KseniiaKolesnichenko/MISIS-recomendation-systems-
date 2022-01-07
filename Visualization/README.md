@@ -2,6 +2,8 @@
 
 Module for data visualization.
 
+![изображение](https://user-images.githubusercontent.com/64684353/148545901-3587eda1-fc0f-4ee6-b6ca-26864c57e112.png)
+
 ## Functions in report generator:
 ### generate_horizon_drill_image(data, export_path, export_name, columns)
 Generates and saves image from input data using selected columns.
