@@ -86,7 +86,7 @@ def save_map(data,
     Target object will be marked with specific color
 
     Args:
-        data (pd.DataFrmae): Dataframe withh all objects
+        data (pd.DataFrame): Dataframe withh all objects
         target_well_label (int/str): Lable of object o highlight from others
         export_path (str, optional): Directory to save map. Defaults to c.EXPORT_PATH.
         export_name (str, optional): Map name. Defaults to c.MAP_NAME.
