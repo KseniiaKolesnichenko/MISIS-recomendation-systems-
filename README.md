@@ -2,6 +2,15 @@
 
 ![изображение](https://github.com/KseniiaKolesnichenko/MISIS-recomendation-systems-/blob/main/earth.png)
 
+## Repo content
+- finalscope - Real commercial presentation of project concept
+- forecasts - Python notebooks with different ways to forecast parameters of drilling new shaft/well
+- recommendations - Python notebook to recommend best drilling candidate with optimal working speed
+- visualisation - Module to visualize drilling params, drilling speed and real map of drilling points
+
+
+## Description
+
 Real-time optimization of drilling paramete rs during drilling operations aims to optimize weight on bit, bit rotation speed for obtaining maximum drilling rate as well
 as minimizing the drilling cost.
 
