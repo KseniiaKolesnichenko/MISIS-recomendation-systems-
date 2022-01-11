@@ -3,7 +3,8 @@ import os
 # Filenames and pathes
 STR_DATA_NAME = "Visualization\\short_test_data.xlsx"
 SPEED_DATA_NAME = "Visualization\\short_speed_data.xlsx"
-REPORT_NAME = "Visualization\\Drilling report example"
+STR_REPORT_NAME = "Visualization\\Stratography report example"
+SPEED_REPORT_NAME = "Visualization\\Speed report example"
 MAP_NAME = "Visualization\\Drilling map example"
 DATA_PATH = os.getcwd()
 EXPORT_PATH = os.getcwd()
@@ -15,7 +16,8 @@ WELL_ID_FIELD_NAME = "well_id"
 
 # Plot visualization parameters
 STR_PLOT_SIZE = (8.5,11)
-SPEED_PLOT_SIZE = (20, 10)
+SPEED_PLOT_HEIGHT = 5
+SPEED_PLOY_ASPECT = 2.1
 STR_PLOT_MAIN_TITLE = "Drilling report for stratography"
 SPEED_PLOT_MAIN_TITLE = "Speed report for stratography"
 STR_PLOT_XLABLE_NAME = "Stratography"
