@@ -5,6 +5,7 @@ import pandas as pd
 import folium
 import random
 import report_constants as c
+import numpy as np
 
 
 
@@ -16,9 +17,12 @@ def generate_horizon_drill_image(data,
 
     Args:
         data (pd.DataFrame): Input data with parameters to visualize
-        export_path (str, optional): Directory to save image. Defaults to c.EXPORT_PATH.
-        export_name (str, optional): Report name. Defaults to c.REPORT_NAME.
-        columns (list, optional): Names of parameters to visualize. Defaults to c.REPORT_COLUMNS.
+        export_path (str, optional): Directory to save image.
+                                     Defaults to c.EXPORT_PATH.
+        export_name (str, optional): Report name.
+                                     Defaults to c.REPORT_NAME.
+        columns (list, optional): Names of parameters to visualize.
+                                  Defaults to c.REPORT_COLUMNS.
     """
     assert isinstance(data, pd.DataFrame), \
         "Data must be pd.DataFrame type!"
@@ -30,19 +34,45 @@ def generate_horizon_drill_image(data,
     fig, axes = plt.subplots(len(columns),
                              1,
                              sharex=True,
-                             figsize=c.PLOT_SIZE)
+                             figsize=c.STR_PLOT_SIZE)
 
-    fig.suptitle(c.PLOT_MAIN_TITLE)
+    fig.suptitle(c.STR_PLOT_MAIN_TITLE)
     for num, column_name in enumerate(columns):
         sns.lineplot(ax=axes[num],
-                    x=data[column_name].index,
-                    y=data[column_name].values)
+                     x=data.index.map(str),
+                     y=data[column_name].values)
         axes[num].set_title(column_name)
-    plt.xlabel(c.PLOT_XLABLE_NAME)
+    plt.xlabel(c.STR_PLOT_XLABLE_NAME)
 
     report_full_path = f"{os.path.join(export_path, export_name)}.png"
     fig.savefig(report_full_path)
+
     print(f"Drilling report exported to:\n{report_full_path}")
+
+
+
+def generate_stratography_lineplot(data,
+                                   export_path=c.EXPORT_PATH,
+                                   export_name=c.REPORT_NAME,
+                                   columns=c.REPORT_COLUMNS):
+
+    sns.set_theme(style="whitegrid")
+    plot = sns.relplot(x="str",
+                y="speed",
+                hue="well_id",
+                data=data,
+                kind="line",
+                palette="tab10",
+                linewidth=1.5)
+    plt.figure(figsize=c.SPEED_PLOT_SIZE)
+    plt.xticks(data.str.map(str).unique())
+    plt.xlabel(c.SPEED_PLOT_XLABLE_NAME)
+
+    report_full_path = f"{os.path.join(export_path, export_name)}.png"
+    plot.savefig(f"{report_full_path}")
+
+    print(f"Drilling report exported to:\n{report_full_path}")
+
 
 
 def generate_random_coordinates(center, threshold, number):
@@ -70,16 +100,35 @@ def generate_random_coordinates(center, threshold, number):
 
     coordinates = []
     for _ in range(number):
-        random_latitude = random.uniform(center[0]-threshold,
-                                         center[0]+threshold)
-        random_longtitude = random.uniform(center[1]-threshold*c.THRESHOLD_MODIFYER,
-                                           center[1]+threshold*c.THRESHOLD_MODIFYER)
+        random_latitude = random.uniform(
+            center[0]-threshold,
+            center[0]+threshold
+        )
+        random_longtitude = random.uniform(
+            center[1]-threshold*c.THRESHOLD_MODIFYER,
+            center[1]+threshold*c.THRESHOLD_MODIFYER
+        )
         coordinates.append((random_latitude, random_longtitude))
+
     return coordinates
 
 
-def save_map(data,
-             target_well_label,
+
+def add_marker(well_map, lat, long, color, well_id):
+    html = (
+        f'<div style="font-size: 18pt; color : {color}">{well_id}</div>'
+    )
+    icon = folium.DivIcon(
+        icon_size=c.ICON_SIZE,
+        icon_anchor=c.ICON_ANCHOR,
+        html=html,
+    )
+    print(html)
+    folium.Marker([lat, long], icon=icon).add_to(well_map)
+
+
+
+def save_map(data, target_well_label,
              export_path=c.EXPORT_PATH,
              export_name=c.MAP_NAME):
     """Generates and saves map with objects.
@@ -87,9 +136,11 @@ def save_map(data,
 
     Args:
         data (pd.DataFrame): Dataframe withh all objects
-        target_well_label (int/str): Lable of object o highlight from others
-        export_path (str, optional): Directory to save map. Defaults to c.EXPORT_PATH.
-        export_name (str, optional): Map name. Defaults to c.MAP_NAME.
+        target_well_label (int/str): Lable of object of highlight from others
+        export_path (str, optional): Directory to save map.
+                                     Defaults to c.EXPORT_PATH.
+        export_name (str, optional): Map name.
+                                     Defaults to c.MAP_NAME.
     """
     well_map = folium.Map(location=c.MAP_CENTER,
                      #width=500,
@@ -103,6 +154,7 @@ def save_map(data,
         number=len(data[c.WELL_ID_FIELD_NAME].unique()),
     )
 
+    # add markers from coordinates
     for well_id, coordinate in zip(data[c.WELL_ID_FIELD_NAME].unique(),
                                    coordinates):
         lat, long = coordinate
@@ -112,24 +164,27 @@ def save_map(data,
         else:
             color = c.OTHERS_COLOR
 
-        icon = folium.DivIcon(
-            icon_size=c.ICON_SIZE,
-            icon_anchor=c.ICON_ANCHOR,
-            html=f'<div style="font-size: 18pt; color : {color}">{well_id}</div>',
-        )
-        folium.Marker([lat, long], icon=icon).add_to(well_map)
+        add_marker(well_map, lat, long, color, well_id)
 
+    # add title of the map
     title_html = f"""<h3 style="font-size:20px"><b>{c.MAP_TITLE}</b></h3>"""
     well_map.get_root().html.add_child(folium.Element(title_html))
 
+    # save map
     map_export_path = f"{os.path.join(export_path, export_name)}.html"
     well_map.save(outfile=map_export_path)
     print(f"Drilling map exported to:\n{map_export_path}")
 
 
 if __name__ == "__main__":
-    full_data_path = os.path.join(c.DATA_PATH, c.DATA_NAME)
-    wells_data = pd.read_excel(full_data_path)
+    full_str_path = os.path.join(c.DATA_PATH, c.STR_DATA_NAME)
+    full_speed_path = os.path.join(c.DATA_PATH, c.SPEED_DATA_NAME)
+
+    wells_data = pd.read_excel(full_str_path)
+    wells_data.set_index('str', drop=True, inplace=True)
+
+    #speed_data = pd.read_excel(full_speed_path)
+    #speed_data.set_index('str', drop=True, inplace=True)
 
     best_well_label = 1
 
@@ -138,10 +193,13 @@ if __name__ == "__main__":
 
     generate_horizon_drill_image(data=best_well_data,
                                  export_path=c.EXPORT_PATH,
-                                 export_name=c.REPORT_NAME,
+                                 export_name=c.REPORT_NAME+'_1',
                                  columns=c.REPORT_COLUMNS)
+
+    #generate_stratography_lineplot(data=speed_data,
+                                   #export_path=c.EXPORT_PATH,
+                                   #export_name=c.REPORT_NAME+'_2',
+                                   #columns=c.SPEED_COLUMNS)
 
     save_map(data=wells_data,
              target_well_label=best_well_label)
-
-    exit()

@@ -1,20 +1,25 @@
 import os
 
 # Filenames and pathes
-DATA_NAME = "short_test_data.xlsx"
-REPORT_NAME = "Drilling report example"
-MAP_NAME = "Drilling map example"
+STR_DATA_NAME = "Visualization\\short_test_data.xlsx"
+SPEED_DATA_NAME = "Visualization\\short_speed_data.xlsx"
+REPORT_NAME = "Visualization\\Drilling report example"
+MAP_NAME = "Visualization\\Drilling map example"
 DATA_PATH = os.getcwd()
 EXPORT_PATH = os.getcwd()
 
 # Data fields
-REPORT_COLUMNS = ["flow", "mse", "rpm", "dexp", "rop", "wob"]
+REPORT_COLUMNS = ["flow", "rpm", "wob"]
+SPEED_COLUMNS = ["speed"]
 WELL_ID_FIELD_NAME = "well_id"
 
 # Plot visualization parameters
-PLOT_SIZE = (8.5,11)
-PLOT_MAIN_TITLE = "Drilling report for horizons"
-PLOT_XLABLE_NAME = "Horizons"
+STR_PLOT_SIZE = (8.5,11)
+SPEED_PLOT_SIZE = (20, 10)
+STR_PLOT_MAIN_TITLE = "Drilling report for stratography"
+SPEED_PLOT_MAIN_TITLE = "Speed report for stratography"
+STR_PLOT_XLABLE_NAME = "Stratography"
+SPEED_PLOT_XLABLE_NAME = "Stratography"
 
 # Coordinates generator parameters
 IS_RANDOM_SEED_ACTIVE = True          # Switch off to real randomization
