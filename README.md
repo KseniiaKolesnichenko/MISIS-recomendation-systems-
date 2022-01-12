@@ -23,5 +23,6 @@ The computer network will keep the piped data directly from the data source, and
 
 It has been found that drilling rate of pe netration could be modelled in real-time environment as a function of independent dr illing variables such as weight on bit,
 rotation speed of the string, drilling fluid weight, and formation characteristics. The ability to have the drilling rate of penetration with respect to depth aracteristically with certain parameters for specific form ations on real-time basis could bring new insights to the nature of drilling optimization studies. Any significant departure of the actual rate of penetration from the predicted rate of pe netration trend could have important indications which could be detected beforehand in real-time. The study has also achieved one of its objectives, giving the optimized independent drilling parameters found following statistical synthesis.
+## Final effect
 
 Based on the results of our work, a presentation was made for the customer with recommendations for fast and trouble-free drilling of the future well. At the current well, this approach will save up to 25% of the cost of the well in terms of one well per month about 5 million rubles or in terms of the entire Russian drilling volume of 45,000 million rubles per year!!!
