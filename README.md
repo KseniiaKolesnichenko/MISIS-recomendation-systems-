@@ -34,3 +34,4 @@ important indications which could be detected beforehand in real-time. The study
 also achieved one of its objectives, gi ving the optimized independent drilling
 parameters found following statistical synthesis.
 Based on the results of our work, a presentation was made for the customer with recommendations for fast and trouble-free drilling of the future well.
+At the current well, this approach will save up to 25% of the cost of the well in terms of one well per month about 5 million rubles or in terms of the entire Russian drilling volume of 45,000 million rubles per year!!!
