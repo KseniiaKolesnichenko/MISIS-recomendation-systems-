@@ -58,7 +58,7 @@ Args:
 
 ## Run
 - Import as a module
-- Standalone: python Visualization\report_generator.py
+- Standalone: python .\visualization\report_generator.py
 
 ## TODO
 - Add real data
