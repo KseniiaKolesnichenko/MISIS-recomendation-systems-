@@ -1,6 +1,6 @@
 # MISIS-recomendation-systems-
 
-![изображение](https://www.goldfields.com/reports/annual_report_2016/minerals/images/pg116-pic1.png)
+![изображение](https://github.com/KseniiaKolesnichenko/MISIS-recomendation-systems-/blob/main/earth.png)
 
 Real-time optimization of drilling paramete rs during drilling operations aims to
 optimize weight on bit, bit rotation speed for obtaining maximum drilling rate as well
