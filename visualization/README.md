@@ -5,7 +5,7 @@ jan 2022
 
 
 Module for data visualization.
-
+![изображение](https://github.com/KseniiaKolesnichenko/MISIS-recomendation-systems-/blob/main/visualization/Map%20image%20example.png)
 ![изображение](https://github.com/KseniiaKolesnichenko/MISIS-recomendation-systems-/blob/main/visualization/Speed%20report%20example.png)
 ![изображение](https://github.com/KseniiaKolesnichenko/MISIS-recomendation-systems-/blob/main/visualization/Stratography%20report%20example.png)
 
