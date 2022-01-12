@@ -50,10 +50,11 @@ def generate_horizon_drill_image(data,
 
 
 
-def generate_stratography_speed_lineplot(data,
-                                   export_path=c.EXPORT_PATH,
-                                   export_name=c.SPEED_REPORT_NAME,
-                                   columns=c.REPORT_COLUMNS):
+def generate_stratography_speed_lineplot(
+    data,
+    export_path=c.EXPORT_PATH,
+    export_name=c.SPEED_REPORT_NAME,
+    columns=c.REPORT_COLUMNS):
     """Saves plot of speed for different wells as image
 
     Args:
@@ -69,15 +70,17 @@ def generate_stratography_speed_lineplot(data,
     sns.set()
     sns.set_theme(style="whitegrid")
 
-    sns.relplot(x=data.str.map(str),
-                y="speed",
-                hue="well_id",
-                data=data,
-                kind="line",
-                palette="tab10",
-                linewidth=1.5,
-                height=c.SPEED_PLOT_HEIGHT,
-                aspect=c.SPEED_PLOY_ASPECT)
+    sns.relplot(
+        x=data.str.map(str),
+        y="speed",
+        hue="well_id",
+        data=data,
+        kind="line",
+        palette="tab10",
+        linewidth=1.5,
+        height=c.SPEED_PLOT_HEIGHT,
+        aspect=c.SPEED_PLOY_ASPECT
+    )
 
     plt.suptitle(c.SPEED_PLOT_MAIN_TITLE)
     plt.xticks(list(data.str.map(str)))
@@ -85,6 +88,7 @@ def generate_stratography_speed_lineplot(data,
     plt.ylabel('Drilling speed')
 
     report_full_path = f"{os.path.join(export_path, export_name)}.png"
+
     plt.savefig(f"{report_full_path}")
 
     print(f"Drilling report exported to:\n{report_full_path}")
@@ -187,6 +191,7 @@ def save_map(data, target_well_label,
 
     # save map
     map_export_path = f"{os.path.join(export_path, export_name)}.html"
+
     well_map.save(outfile=map_export_path)
 
     print(f"Drilling map exported to:\n{map_export_path}")
