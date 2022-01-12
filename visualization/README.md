@@ -1,6 +1,6 @@
 # Visualization system
-by Artyom Filippenko
-f
+by Artyom Filippenko;
+
 MISIS Classification Project, 2022
 
 Module for data visualization.
