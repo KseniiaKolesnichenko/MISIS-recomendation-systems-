@@ -7,7 +7,7 @@
 - forecasts - Python notebooks with different ways to forecast parameters of drilling new shaft/well
 - risk predictions - RNN method for prediction difficulties in drilling process
 - recommendations - Python notebook to recommend best drilling candidate with optimal working speed
-- visualisation - Module to visualize drilling params, drilling speed and real map of drilling points
+- visualization - Module to visualize drilling params, drilling speed and real map of drilling points
 
 
 ## Description
