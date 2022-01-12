@@ -1,7 +1,7 @@
 # Visualization system
 by Artyom Filippenko
-MISIS Classification Project, Team 2
-jan 2022
+f
+MISIS Classification Project, 2022
 
 Module for data visualization.
 
